@@ -32,7 +32,7 @@ class BST {
         } else if (key > (*node)->key) {
             insert(&((*node)->right), key);
         } else {
-            (*node)->freq++;
+            ++((*node)->freq);
         }
     }
 
@@ -51,12 +51,13 @@ class BST {
 
     int depth(Node* node) const {
         if (node == nullptr)
-            return 0;
+            return -1;
 
-        int l = depth(node->left);
-        int r = depth(node->right);
+        int left_depth = depth(node->left);
+        int right_depth = depth(node->right);
 
-        return (l > r ? l : r) + 1;
+        return (left_depth > right_depth ?
+                left_depth : right_depth) + 1;
     }
 
  public:
